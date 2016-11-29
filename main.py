@@ -12,8 +12,8 @@ def is_palindrom(n):
     s = str(n)
     l = len(s)
     if l % 2 != 0:
-        return s[:l // 2] == mirror(s[l // 2 + 1:])
-    return s[:l // 2] == mirror(s[l // 2:])
+        return int(s[:l // 2]) == mirror(s[l // 2 + 1:])
+    return int(s[:l // 2]) == mirror(s[l // 2:])
 
 
 def sum_of_nums(n):
@@ -102,12 +102,14 @@ for i in range(n):
     if mirror(k)==4*k:
         break
 print(11,k)
-"""  # SUPER COMMENTER """
 
 # 13
 a = 836
 while True:
     a += 1
-    if is_palindrom(a ** 2):
+    if is_palindrom(a ** 2) and len(str(a**2))%2==0:
         break
 print(13, a ** 2)
+
+"""  # SUPER COMMENTER """
+# 14
