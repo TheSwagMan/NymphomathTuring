@@ -6,6 +6,28 @@ TheSwagMan - Thomas POTIER <theswagman@gmx.fr>
 ####################
 # FUNCTIONS        #
 ####################
+def syracuse(n):
+    r = []
+    while n > 1:
+        if n % 2 == 0:
+            r.append(n)
+            n //= 2
+        else:
+            n = 3 * n + 1
+    r.append(1)
+    return r
+
+
+def syracuse_len(n):
+    l = 1
+    while n > 1:
+        if n % 2 == 0:
+            l += 1
+            n //= 2
+        else:
+            n = 3 * n + 1
+    return l
+
 def is_prime(n):
     for i in range(2, int(n ** 0.5) + 1):
         if n % i == 0:
@@ -117,3 +139,11 @@ print(13, a ** 2)
 
 """  # SUPER COMMENTER """
 # 14
+maxi = 0
+maxl = 0
+for i in range(1500000):
+    k = syracuse_len(i)
+    if k > maxl:
+        maxl = k
+        maxi = i
+print(14, maxi)
