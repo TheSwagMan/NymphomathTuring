@@ -1,3 +1,8 @@
+"""
+This file contains scripts to resolve problems on turing.nymphomath.ch. Please don't use this to cheat and just for educational purpose, verification and/or help.
+TheSwagMan - Thomas POTIER <theswagman@gmx.fr>
+"""
+
 ####################
 # FUNCTIONS        #
 ####################
@@ -25,7 +30,6 @@ def facto(n):
     for i in range(2, n):
         r *= i
     return r * n
-
 
 def mirror(n):
     return int(str(n)[::-1])
