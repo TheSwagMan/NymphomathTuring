@@ -127,11 +127,24 @@ def are_facts_fact(n, k):
     return s == k * n
 
 
+def sum_of_squares(a, b):
+    s = 0
+    for i in range(a, b + 1):
+        s += i ** 2
+    return s
+
+
+def mean_of_squares(a, b):
+    if (b - a) == 0:
+        return sum_of_squares(a, b)
+    return sum_of_squares(a, b) / (b - a)
+
+
 ####################
 # MAIN PROG        #
 ####################
 
-
+"""
 # 1
 somme = 0
 for i in range(2013):
@@ -331,11 +344,21 @@ while not sum([int(s) ** int(s) for s in str(a)]) == a:
     a += 1
 print(111, a)
 
-"""  # SUPER COMMENTER """
-# 126
+# 126 NOT IN TIME
 s = 0
 for i in range(1, 100000):
     if are_facts_fact(i, 3):
         s += i
         print(i)
 print(126, s)
+"""  # SUPER COMMENTER """
+# 132 NOT IN TIME
+c = 0
+k = 1
+while mean_of_squares(1, k) < 1000000000:
+    j = mean_of_squares(1, k)
+    if int(j) == j:
+        c += 1
+        print(j)
+    k += 1
+print(132, c)
