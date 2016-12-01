@@ -57,6 +57,13 @@ def mirror(n):
     return int(str(n)[::-1])
 
 
+def factorial_sum(n):
+    s = 0
+    for c in str(n):
+        s += facto(int(c))
+    return s
+
+
 ####################
 # MAIN PROG        #
 ####################
@@ -137,7 +144,7 @@ while True:
         break
 print(13, a ** 2)
 
-"""  # SUPER COMMENTER """
+
 # 14
 maxi = 0
 maxl = 0
@@ -147,3 +154,38 @@ for i in range(1500000):
         maxl = k
         maxi = i
 print(14, maxi)
+
+# 19
+sum=0
+for i in range(2013):
+    if (i%(2*6)==1 or i%(2*6)==2*6-1) and (i%(2*7)==1 or i%(2*7)==2*7-1):
+        sum+=i+1
+print(19,sum)
+
+# 25
+b=0
+c=1
+i=1
+while len(str(c))<2013:
+    i+=1
+    k=b+c
+    b=c
+    c=k
+print(25,i)
+
+
+# 34 ERROR !!!
+s=0
+c=3
+while c<1000000:
+    if c==factorial_sum(c):
+        s+=c
+    c+=1
+print(34,s)
+
+s=0
+for i in range(1,2014):
+    s+=i**i
+print(str(s)[:10])
+"""  # SUPER COMMENTER """
+# 70
