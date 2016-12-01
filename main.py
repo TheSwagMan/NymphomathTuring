@@ -18,6 +18,9 @@ def syracuse(n):
     return r
 
 
+def rotate(n):
+    return int(str(n)[-1] + str(n)[:-1])
+
 def syracuse_len(n):
     l = 1
     while n > 1:
@@ -63,6 +66,17 @@ def factorial_sum(n):
         s += facto(int(c))
     return s
 
+
+def diastern(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        if n % 2 == 0:
+            return diastern(int(n / 2))
+        else:
+            return diastern((n - 1) / 2) + diastern((n - 1) / 2 + 1)
 
 ####################
 # MAIN PROG        #
@@ -183,9 +197,21 @@ while c<1000000:
     c+=1
 print(34,s)
 
+# 48
 s=0
 for i in range(1,2014):
     s+=i**i
-print(str(s)[:10])
-"""  # SUPER COMMENTER """
+print(48,str(s)[:10])
+
+# 67
+print(67,diastern(10000001))
+
 # 70
+s=0
+for i in range(10**5,10**6):
+    b=rotate(i)
+    if i!=b and len(str(b))==6:
+        if b%i==0:
+            s+=i
+print(70,s)
+"""  # SUPER COMMENTER """
