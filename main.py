@@ -6,6 +6,27 @@ TheSwagMan - Thomas POTIER <theswagman@gmx.fr>
 ####################
 # FUNCTIONS        #
 ####################
+def augment(m):
+    m[-1] += 1
+    while 10 in m:
+        for i in range(len(m)):
+            if i > 0 and m[i] == 10:
+                m[i - 1] += 1
+                m[i] = 0
+            elif m[i] == 10:
+                m[i] = 9
+    return m
+
+
+def reduce(m):
+    m[-1] -= 1
+    while -1 in m:
+        for i in range(len(m)):
+            if m[i] == -1:
+                m[i] = 9
+                m[i - 1] -= 1
+    return m
+
 def syracuse(n):
     r = []
     while n > 1:
@@ -45,7 +66,6 @@ def is_palindrom(n):
         return int(s[:l // 2]) == mirror(s[l // 2 + 1:])
     return int(s[:l // 2]) == mirror(s[l // 2:])
 
-
 def sum_of_nums(n):
     return sum([int(e) for e in str(n)])
 
@@ -79,17 +99,32 @@ def diastern(n):
             return diastern((n - 1) / 2) + diastern((n - 1) / 2 + 1)
 
 
-def has_one_of_each_num(s, a=0, b=9):
+def has_each_num(s, a=0, b=9):
     for i in range(a, b + 1):
         if s.count(str(i)) != 1:
             return False
     return True
 
+
+def has_different_nums(s):
+    for c in s:
+        if s.count(c) != 1:
+            return False
+    return True
+
+
+def are_facts_fact(n, k):
+    s = 0
+    for i in range(1, int(n / 2) + 1):
+        if n % i == 0:
+            s += i
+    return s == k * n
+
 ####################
 # MAIN PROG        #
 ####################
 
-"""
+
 # 1
 somme=0
 for i in range(2013):
@@ -221,7 +256,7 @@ print(70,s)
 
 # 71
 a=568
-while not has_one_of_each_num(str(a)+str(a**2),1):
+while not (has_each_num(str(a) + str(a ** 2), 1) and has_different_nums(str(a) + str(a ** 2))):
     a+=1
 print(71,a)
 
@@ -235,5 +270,66 @@ while a**2<1000000000:
             n += 1
     a+=1
 print(72,n)
-"""  # SUPER COMMENTER """
+
 # 73
+a = 9999999
+while not (is_palindrom(a) and is_palindrom(a ** 2)):
+    a -= 1
+print(73, a)
+
+# 77
+nums = [9 for i in range(8)]
+no = [0 for i in range(8)]
+while nums != no and "".join([str(n) for n in nums]) != str(int("".join([str(nums[i]) for i in range(4)])) ** 2 + int(
+        "".join([str(nums[i]) for i in range(4, 8)])) ** 2):
+    nums = reduce(nums)
+print(77, "".join([str(n) for n in nums]))
+
+# 78
+nums = [0 for i in range(4)]
+fu = [9 for i in range(4)]
+while nums != fu and "".join([str(n) for n in nums]) != str(nums[0] ** nums[1] * nums[2] ** nums[3]):
+    nums = augment(nums)
+print(78, "".join([str(n) for n in nums]))
+
+# 85
+s = 0
+for i in range(1, 100000):
+    if has_different_nums(str(i)):
+        s += i
+print(85, s)
+
+# 90
+nlights = 276
+lights = [False for i in range(nlights)]
+for i in range(25):
+    for j in range(nlights):
+        if j % (i + 1) == 0:
+            lights[j] = not lights[j]
+c = 0
+for light in lights:
+    if light:
+        c += 1
+print(90, c)
+
+# 107
+a = 0
+while not has_each_num(str(a ** 2)):
+    a += 1
+print(107, a ** 2)
+
+# 111
+a = 2
+while not sum([int(s) ** int(s) for s in str(a)]) == a:
+    a += 1
+print(111, a)
+
+"""  # SUPER COMMENTER """
+# 126
+s = 0
+for i in range(1, 100000):
+    if are_facts_fact(i, 3):
+        s += i
+        print(i)
+        print(i)
+print(126, s)
