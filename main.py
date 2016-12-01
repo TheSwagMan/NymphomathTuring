@@ -78,6 +78,13 @@ def diastern(n):
         else:
             return diastern((n - 1) / 2) + diastern((n - 1) / 2 + 1)
 
+
+def has_one_of_each_num(s, a=0, b=9):
+    for i in range(a, b + 1):
+        if s.count(str(i)) != 1:
+            return False
+    return True
+
 ####################
 # MAIN PROG        #
 ####################
@@ -110,7 +117,6 @@ for i in range(n):
         if is_prime((n//2)-i):
             break
 print(3,(n//2)-i)
-
 
 # 4
 palindroms=[]
@@ -158,7 +164,6 @@ while True:
         break
 print(13, a ** 2)
 
-
 # 14
 maxi = 0
 maxl = 0
@@ -187,7 +192,6 @@ while len(str(c))<2013:
     c=k
 print(25,i)
 
-
 # 34 ERROR !!!
 s=0
 c=3
@@ -214,4 +218,22 @@ for i in range(10**5,10**6):
         if b%i==0:
             s+=i
 print(70,s)
+
+# 71
+a=568
+while not has_one_of_each_num(str(a)+str(a**2),1):
+    a+=1
+print(71,a)
+
+# 72
+n=0
+a=1
+while a**2<1000000000:
+    k=str(a**2)
+    if len(k)>=4:
+        if k[-1] == k[-2] == k[-3] != k[-4]:
+            n += 1
+    a+=1
+print(72,n)
 """  # SUPER COMMENTER """
+# 73
